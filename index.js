@@ -1,11 +1,18 @@
 // Port to run on
 const port = 4000;
 
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Import express for creating a web server
-const express = require('express');
+//const express = require('express');
 
 // Import path to handle file paths
-const path = require('path');
+//const path = require('path');
 
 // Create a web server
 const app = express();
