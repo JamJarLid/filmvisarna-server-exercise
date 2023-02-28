@@ -47,6 +47,7 @@ export default function App() {
     movies: [],
     categories: [],
     showing: [],
+    theatres: []
   });
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function App() {
       s.movies = movies;
       s.categories = createCategoryList(movies);
       s.showing = createShowingsList(movies);
+      let theatres = await (await fetch("/json/theatres.json")).json();
     })();
   }, []);
 

@@ -2,6 +2,8 @@ import React from "react";
 import { useStates } from "../utilities/states";
 import { useState } from "react";
 import orderConfirmGenerate from "../utilities/random-order-confirmation";
+import Home from "./Home";
+import SeatingGrid from "./SeatingGrid";
 
 import { Link, useParams, Routes, Route } from "react-router-dom";
 
@@ -45,11 +47,23 @@ export default function Booking() {
     // in-place replacement
     if (shownAttr) shownMovieAttrs[shownMovieAttrs.get(kv[0])] = kv[1];
     if (shownAttr) shownMovieAttrs[shownMovieAttrs.get(kv[0])] = kv[1];
-  }
+  };
+  const d = useStates({
+    home: [{ path: "/", Component: Home }],
+  });
 
   return !order.submitted ? (
     <>
       <div className="bokning">
+        
+        {d.home.map(({ path }) => (
+          <Link to={path} className="x">
+            <button className="to-home">Tillbaka</button>
+          </Link>
+        ))}
+        <div>
+          <SeatingGrid name={"Stora Salongen"} />
+        </div>
         <h2>Boka din biljett</h2>
         <form onSubmit={handleSubmit}>
           <label>
@@ -190,10 +204,10 @@ export default function Booking() {
           <br />
           {order.numberOfSeniors}
         </p>
-        <h3>Boknings bekräftelse</h3>
-        <h2>{moviePath}</h2>
+        <h3>Bokningsbekräftelse</h3>
+        <h2>{movie.title}</h2>
         <p>Glöm inte att ta med detta bokningsnummer till föreställningen:</p>
-        <p>{s.confirmationNumber}</p>
+        <h1>{s.confirmationNumber}</h1>
       </div>
     </>
   );
